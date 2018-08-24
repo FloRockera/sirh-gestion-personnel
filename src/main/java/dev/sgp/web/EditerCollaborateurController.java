@@ -26,7 +26,6 @@ public class EditerCollaborateurController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doPost(req, resp);
 
 		String msgErreur = "Les paramètres suivants sont incorrects :";
 		String matriculeParam = req.getParameter("matricule");
@@ -34,8 +33,8 @@ public class EditerCollaborateurController extends HttpServlet {
 		String nomParam = req.getParameter("nom");
 		String prenomParam = req.getParameter("prenom");
 
-		if ((StringUtils.isBlank(matriculeParam)) || (StringUtils.isBlank(titreParam))
-				|| (StringUtils.isBlank(nomParam)) || (StringUtils.isBlank(prenomParam))) {
+		if (StringUtils.isBlank(matriculeParam) || StringUtils.isBlank(titreParam) || StringUtils.isBlank(nomParam)
+				|| StringUtils.isBlank(prenomParam)) {
 
 			if (StringUtils.isBlank(matriculeParam)) {
 				msgErreur += "matricule";
@@ -57,9 +56,12 @@ public class EditerCollaborateurController extends HttpServlet {
 		} else {
 			resp.setCharacterEncoding("UTF-8");
 			resp.getWriter()
-					.write("<html><head><meta charset=\"utf8\"><h1>Liste des collaborateurs</h1></head></html>" + "<li>"
-							+ matriculeParam + "</li>" + "<li>" + titreParam + "<li>" + "<li>" + nomParam + "</li>"
-							+ "<li>" + prenomParam + "</li>");
+					.write("<html><head><meta charset=\"utf-8\" /></head><body><h1>Editer des collaborateurs</h1>"
+							+ "<p>Création d'un coolaborateur avec les information suivantes :<p>" + "<ul>"
+							+ "<li>matricule =" + matriculeParam + "</li>" + "<li>titre =" + titreParam + "</li>"
+							+ "<li>nom =" + nomParam + "</li>" + "<li>prenom =" + prenomParam + "</li>"
+							+ "</ul></body></html>");
+			resp.setStatus(201);
 		}
 
 	}
