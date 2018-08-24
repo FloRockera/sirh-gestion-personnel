@@ -52,12 +52,14 @@ public class EditerCollaborateurController extends HttpServlet {
 			if (StringUtils.isBlank(prenomParam)) {
 				msgErreur += "prenom";
 			}
-			resp.sendError(400);
+			resp.sendError(400, msgErreur);
 
 		} else {
 			resp.setCharacterEncoding("UTF-8");
-			resp.getWriter().write("<html><head><meta charset=\"utf8\"><h1>Liste des collaborateurs</h1></head></html>"
-					+ " " + matriculeParam + " " + titreParam + " " + nomParam + " " + prenomParam);
+			resp.getWriter()
+					.write("<html><head><meta charset=\"utf8\"><h1>Liste des collaborateurs</h1></head></html>" + "<li>"
+							+ matriculeParam + "</li>" + "<li>" + titreParam + "<li>" + "<li>" + nomParam + "</li>"
+							+ "<li>" + prenomParam + "</li>");
 		}
 
 	}
